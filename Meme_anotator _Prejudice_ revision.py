@@ -8,7 +8,7 @@ from tkinter import messagebox
 image_folder = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes"
 excel_path = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes\Meme_annotations_Binar.xlsx"
 progress_file = "review_progress.txt" 
-target_column = "Prejudice"
+target_column = "Prejudice"  
 BATCH_SIZE = 8  
 # ----------------------------------------
 
@@ -36,31 +36,80 @@ df = df.sort_values(
 rows_to_review = df[df[target_column].notna()].index.tolist()
 
 if not rows_to_review:
-    print("No annotated data found to review!")
+    print(f"No annotated data found for '{target_column}' to review!")
     exit()
 
 current_index = load_last_index()
 
 # ---------------- GUI ----------------
 root = tk.Tk()
-root.title("Meme Review Tool - Persistent Progress")
+root.title(f"Review Tool: {target_column}")
 root.state('zoomed')
 root.configure(bg="#121212")
 
-header_label = tk.Label(root, text="", fg="#fbbf24", bg="#121212", font=("Arial", 18, "bold"))
-header_label.pack(pady=10)
+# --- HEADER SECTION ---
+header_frame = tk.Frame(root, bg="#121212")
+header_frame.pack(fill="x", pady=15)
 
+header_label = tk.Label(
+    header_frame, 
+    text="", 
+    fg="#fbbf24", 
+    bg="#121212", 
+    font=("Arial", 22, "bold")
+)
+header_label.pack()
+
+# --- SEARCH BOX (STRICT TOP-RIGHT POSITION) ---
+search_container = tk.Frame(root, bg="#1e1e1e", bd=2, relief="ridge")
+search_container.place(relx=0.98, y=20, anchor="ne") # Places it 2% from right edge, 20px down
+
+tk.Label(search_container, text="Search Meme:", fg="#fbbf24", bg="#1e1e1e", font=("Arial", 10, "bold")).pack(side="left", padx=5, pady=5)
+search_entry = tk.Entry(search_container, font=("Arial", 12), width=15)
+search_entry.pack(side="left", padx=5, pady=5)
+
+def perform_search(event=None):
+    global current_index
+    target_name = search_entry.get().strip()
+    
+    if not target_name:
+        return
+
+    # Look for name in the list
+    found_idx = -1
+    for i, row_idx in enumerate(rows_to_review):
+        # Checks if target is in the Image_Name (handles cases with or without .jpg)
+        img_name = str(df.at[row_idx, "Image_Name"]).lower()
+        if target_name.lower() in img_name:
+            found_idx = i
+            break
+    
+    if found_idx != -1:
+        save_data() # Save current work before jumping
+        # Jump to the batch containing this image
+        current_index = (found_idx // BATCH_SIZE) * BATCH_SIZE
+        load_batch()
+        search_entry.delete(0, tk.END)
+        # Highlight which image it is by clearing search focus
+        root.focus()
+    else:
+        messagebox.showwarning("Not Found", f"Meme '{target_name}' not found.")
+
+search_btn = tk.Button(search_container, text="GO", command=perform_search, bg="#3b82f6", fg="white", font=("Arial", 10, "bold"))
+search_btn.pack(side="left", padx=5, pady=5)
+search_entry.bind("<Return>", perform_search)
+
+# --- MAIN IMAGE GRID ---
 main_frame = tk.Frame(root, bg="#121212")
-main_frame.pack(expand=True, fill="both")
+main_frame.pack(expand=True, fill="both", padx=10)
 
 image_widgets = []
 value_vars = []
 photo_refs = []
 
-# Build the grid (2 rows, 4 columns)
 for i in range(BATCH_SIZE):
     frame = tk.Frame(main_frame, bg="#1e1e1e", bd=1, relief="solid")
-    frame.grid(row=i // 4, column=i % 4, padx=5, pady=5, sticky="nsew")
+    frame.grid(row=i // 4, column=i % 4, padx=8, pady=8, sticky="nsew")
     
     main_frame.grid_columnconfigure(i % 4, weight=1)
     main_frame.grid_rowconfigure(i // 4, weight=1)
@@ -68,7 +117,6 @@ for i in range(BATCH_SIZE):
     img_label = tk.Label(frame, bg="#1e1e1e")
     img_label.pack(pady=5)
 
-    # Label showing FileName and the Saved Result
     info_label = tk.Label(frame, fg="#3b82f6", bg="#1e1e1e", font=("Arial", 11, "bold"))
     info_label.pack()
 
@@ -94,11 +142,12 @@ def load_batch():
     photo_refs = []
     total = len(rows_to_review)
     
-    header_label.config(text=f"Reviewing Memes: {current_index + 1} to {min(current_index + BATCH_SIZE, total)} (Total: {total})")
+    header_label.config(
+        text=f"TOPIC: {target_column.upper()} | {current_index + 1}-{min(current_index + BATCH_SIZE, total)} of {total}"
+    )
 
     for i in range(BATCH_SIZE):
         idx_pos = current_index + i
-        
         if idx_pos >= total:
             image_widgets[i][0].config(image="")
             image_widgets[i][1].config(text="")
@@ -110,23 +159,20 @@ def load_batch():
         saved_val = df.at[df_idx, target_column]
         img_path = os.path.join(image_folder, img_name)
 
-        # Set UI state from Excel data
         value_vars[i].set(int(saved_val))
-        image_widgets[i][1].config(text=f"{img_name} | SAVED: {int(saved_val)}", fg="#60a5fa")
+        image_widgets[i][1].config(text=f"{img_name} | SAVED: {int(saved_val)}", fg="#3b82f6")
 
         if os.path.exists(img_path):
             img = Image.open(img_path)
-            # SIZE UPDATED HERE
-            img.thumbnail((420, 300)) 
+            img.thumbnail((400, 300)) 
             tk_img = ImageTk.PhotoImage(img)
             image_widgets[i][0].config(image=tk_img)
             image_widgets[i][0].image = tk_img 
             photo_refs.append(tk_img)
         else:
-            image_widgets[i][1].config(text=f"{img_name} (NOT FOUND)", fg="#ef4444")
+            image_widgets[i][1].config(text=f"{img_name} (MISSING)", fg="red")
 
 def save_data():
-    """Saves current batch state to Excel and progress file"""
     for i in range(BATCH_SIZE):
         idx_pos = current_index + i
         if idx_pos < len(rows_to_review):
@@ -143,7 +189,7 @@ def go_next(event=None):
         current_index += BATCH_SIZE
         load_batch()
     else:
-        messagebox.showinfo("Done", "Review completed!")
+        messagebox.showinfo("Finish", f"End of {target_column} list reached.")
 
 def go_back(event=None):
     global current_index
@@ -152,12 +198,11 @@ def go_back(event=None):
         current_index -= BATCH_SIZE
         load_batch()
     else:
-        messagebox.showwarning("Start", "You're at the beginning!")
+        messagebox.showwarning("Start", "This is the first page.")
 
-# ---------------- CONTROLS ----------------
+# ---------------- KEYBOARD BINDINGS ----------------
 root.bind("<Right>", go_next)
 root.bind("<Left>", go_back)
-root.bind("<Return>", go_next)
 
 def quick_toggle(i):
     if i < BATCH_SIZE:
@@ -167,11 +212,12 @@ def quick_toggle(i):
 for i in range(8):
     root.bind(str(i+1), lambda e, i=i: quick_toggle(i))
 
+# --- FOOTER ---
 footer = tk.Frame(root, bg="#121212")
-footer.pack(pady=10)
+footer.pack(pady=20)
 
-tk.Button(footer, text="◀ BACK (Left Arrow)", command=go_back, width=20, bg="#444", fg="white", font=("Arial", 12)).pack(side="left", padx=10)
-tk.Button(footer, text="SAVE & NEXT (Right Arrow) ▶", command=go_next, width=30, bg="#10b981", fg="white", font=("Arial", 12, "bold")).pack(side="left", padx=10)
+tk.Button(footer, text="◀ BACK", command=go_back, width=15, bg="#444", fg="white", font=("Arial", 12)).pack(side="left", padx=10)
+tk.Button(footer, text="SAVE & NEXT ▶", command=go_next, width=25, bg="#10b981", fg="white", font=("Arial", 12, "bold")).pack(side="left", padx=10)
 
 load_batch()
 root.mainloop()
