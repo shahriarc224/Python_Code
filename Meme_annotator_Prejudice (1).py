@@ -7,7 +7,7 @@ from tkinter import messagebox
 image_folder = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes"
 excel_path = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes\Meme_annotations_Binar.xlsx"
 target_column = "Prejudice"
-BATCH_SIZE = 6     # You mentioned 4 in your text, but your code uses 6. I kept 6 to match your grid
+BATCH_SIZE = 6     # You mentioned 4 in your text, but your code uses 6. I kept 6 to match your grid....
 
 
 df = pd.read_excel(excel_path)
@@ -180,6 +180,7 @@ tk.Button(
 
 load_batch()
 root.mainloop()
+
 
 
 
