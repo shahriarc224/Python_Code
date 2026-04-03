@@ -4,8 +4,10 @@
 When i am using Ubunt then i hsve to paste this command in the terminal of vs code 
 
 <br>
+<br>
 cd "/home/md-shahriar-chowdhury/Sabbir Research"
 ./run.sh
 
+<br>
 <br>
 and then run the code_1.py file 
