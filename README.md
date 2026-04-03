@@ -1,7 +1,7 @@
 # Python_Code
 
 <br>
-When i am using Ubunt then i hsve to paste this command in the terminal of vs code 
+When I am using Ubunt then I have to paste this command in the terminal of vs code 
 
 <br>
 <br>
