@@ -6,7 +6,9 @@ import pandas as pd
 import tkinter as tk
 from tkinter import messagebox
 
+
 # ---------- SYSTEM CHECK ----------
+
 try:
     from PIL import Image, ImageTk
 except ImportError:
@@ -51,7 +53,9 @@ if os.path.exists(STATE_FILE):
             current_index = int(f.read().strip())
     except: current_index = 0
 
+
 # ================= GUI CORE =================
+
 root = tk.Tk()
 root.title("Meme Annotator - Search Integrated")
 root.configure(bg="#121212")
@@ -65,6 +69,7 @@ SCREEN_W = root.winfo_screenwidth()
 SCREEN_H = root.winfo_screenheight()
 IMG_W = (SCREEN_W // COLS) - 40
 IMG_H = (SCREEN_H // ROWS) - 220
+
 
 # --- UI Header ---
 header = tk.Frame(root, bg="#121212")
