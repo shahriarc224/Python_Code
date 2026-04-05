@@ -78,6 +78,7 @@ header.pack(fill="x", padx=20, pady=10)
 tk.Label(header, text=f"Reviewing: {TARGET_COLUMN}", fg="#3b82f6", 
          bg="#121212", font=("Arial", 16, "bold")).pack(side="left")
 
+
 # --- JUMP/SEARCH BOX (Right Side) ---
 search_frame = tk.Frame(header, bg="#121212")
 search_frame.pack(side="right")
@@ -218,8 +219,10 @@ def prev_pg():
         save_to_disk()
         load_batch()
 
+
 root.bind("<d>", lambda e: next_pg())
 root.bind("<a>", lambda e: prev_pg())
+
 
 footer = tk.Frame(root, bg="#121212")
 footer.pack(fill="x", pady=10)
