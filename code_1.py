@@ -11,7 +11,9 @@ except ImportError:
     print("❌ Missing dependencies. Run: sudo apt install python3-pil python3-pil.imagetk")
     sys.exit(1)
 
+
 # ================= CONFIG =================
+
 IMAGE_FOLDER = "/home/md-shahriar-chowdhury/Sabbir Research/Memes 2-20260328T163131Z-1-001/Memes 2"
 EXCEL_PATH = "/home/md-shahriar-chowdhury/Sabbir Research/Memes_2.xlsx"
 TARGET_COLUMN = "Sarcasm_Present"
@@ -21,7 +23,9 @@ ROWS = 2
 COLS = 4
 STATE_FILE = "review_state.txt"
 
+
 # ================= DATA SETUP =================
+
 if not os.path.exists(EXCEL_PATH):
     print(f"❌ Excel file not found: {EXCEL_PATH}")
     sys.exit(1)
@@ -84,6 +88,7 @@ grid_frame = tk.Frame(root, bg="#121212")
 grid_frame.pack(expand=True, fill="both", padx=10, pady=10)
 
 panels = []
+
 
 # ================= LOGIC =================
 
