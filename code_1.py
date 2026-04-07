@@ -16,7 +16,6 @@ except ImportError:
     print("❌ Missing dependencies. Run: sudo apt install python3-pil python3-pil.imagetk")
     sys.exit(1)
 
-
 # ================= CONFIG =================
 
 IMAGE_FOLDER = "/home/md-shahriar-chowdhury/Sabbir Research/Memes 2-20260328T163131Z-1-001/Memes 2"
