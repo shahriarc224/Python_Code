@@ -141,6 +141,7 @@ def jump_logic(event=None):
             return
 
     # 2. Try to jump by filename
+    
     matches = df.index[df['Image_Name'].astype(str).str.lower().str.contains(query)].tolist()
     if matches:
         target_idx = matches[0]
@@ -182,7 +183,9 @@ def load_batch():
 
     counter_label.config(text=f"Current Batch Start: {current_index} | Total Rows: {len(df)}")
 
+
 # --- Panel Creation ---
+
 for i in range(IMAGES_PER_BATCH):
     f = tk.Frame(grid_frame, bg="#1e1e1e", highlightbackground="#333", highlightthickness=1)
     f.grid(row=i//COLS, column=i%COLS, padx=5, pady=5, sticky="nsew")
