@@ -1,10 +1,12 @@
 # This code is for Sarcasm_Present class 
 
+
 import sys
 import os
 import pandas as pd
 import tkinter as tk
 from tkinter import messagebox
+
 
 # ---------- SYSTEM CHECK ----------
 
@@ -105,6 +107,7 @@ def save_to_disk():
         with open(STATE_FILE, "w") as f:
             f.write(str(current_index))
     except Exception as e:
+        
         print(f"❌ Save error: {e}")
 
 def update_visuals(panel_idx):
