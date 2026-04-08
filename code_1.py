@@ -6,14 +6,13 @@ import pandas as pd
 import tkinter as tk
 from tkinter import messagebox
 
-
 # ---------- SYSTEM CHECK ----------
-
 try:
     from PIL import Image, ImageTk
 except ImportError:
     print("❌ Missing dependencies. Run: sudo apt install python3-pil python3-pil.imagetk")
     sys.exit(1)
+
 
 
 # ================= CONFIG =================
@@ -74,6 +73,7 @@ IMG_H = (SCREEN_H // ROWS) - 220
 
 
 # --- UI Header ---
+
 header = tk.Frame(root, bg="#121212")
 header.pack(fill="x", padx=20, pady=10)
 
@@ -234,6 +234,7 @@ def prev_pg():
 
 root.bind("<d>", lambda e: next_pg())
 root.bind("<a>", lambda e: prev_pg())
+
 
 footer = tk.Frame(root, bg="#121212")
 footer.pack(fill="x", pady=10)
