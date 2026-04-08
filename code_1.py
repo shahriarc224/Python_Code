@@ -53,6 +53,7 @@ if os.path.exists(STATE_FILE):
     except: current_index = 0
 
 
+
 # ================= GUI CORE =================
 
 root = tk.Tk()
@@ -79,14 +80,17 @@ tk.Label(header, text=f"Reviewing: {TARGET_COLUMN}", fg="#3b82f6",
          bg="#121212", font=("Arial", 16, "bold")).pack(side="left")
 
 
+
 # --- JUMP/SEARCH BOX (Right Side) ---
 search_frame = tk.Frame(header, bg="#121212")
 search_frame.pack(side="right")
+
 
 tk.Label(search_frame, text="Jump to Name/Row:", fg="#aaa", bg="#121212").pack(side="left", padx=5)
 search_var = tk.StringVar()
 search_entry = tk.Entry(search_frame, textvariable=search_var, width=25, bg="#2d2d2d", fg="white", insertbackground="white")
 search_entry.pack(side="left", padx=5)
+
 
 # --- UI Counter ---
 counter_label = tk.Label(root, fg="#888", bg="#121212", font=("Arial", 10))
