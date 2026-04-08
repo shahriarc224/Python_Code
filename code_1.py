@@ -1,5 +1,6 @@
 # This code is for Sarcasm_Present class 
 
+
 import sys
 import os
 import pandas as pd
@@ -12,8 +13,6 @@ try:
 except ImportError:
     print("❌ Missing dependencies. Run: sudo apt install python3-pil python3-pil.imagetk")
     sys.exit(1)
-
-
 
 # ================= CONFIG =================
 
