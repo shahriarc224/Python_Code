@@ -141,6 +141,7 @@ def jump_logic(event=None):
             search_entry.delete(0, tk.END)
             return
 
+    
     # 2. Try to jump by filename
     
     matches = df.index[df['Image_Name'].astype(str).str.lower().str.contains(query)].tolist()
@@ -229,7 +230,6 @@ def prev_pg():
 root.bind("<d>", lambda e: next_pg())
 root.bind("<a>", lambda e: prev_pg())
 
-
 footer = tk.Frame(root, bg="#121212")
 footer.pack(fill="x", pady=10)
 tk.Button(footer, text=" << PREVIOUS (A) ", command=prev_pg, width=20, bg="#333", fg="white").pack(side="left", padx=50)
@@ -242,3 +242,5 @@ def on_closing():
 root.protocol("WM_DELETE_WINDOW", on_closing)
 load_batch()
 root.mainloop()
+
+
