@@ -244,3 +244,13 @@ load_batch()
 root.mainloop()
 
 
+root.protocol("WM_DELETE_WINDOW", on_closing)
+load_batch()
+root.mainloop()
+
+
+root.protocol("WM_DELETE_WINDOW", on_closing)
+load_batch()
+root.mainloop()
+
+
