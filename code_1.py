@@ -1,12 +1,10 @@
 # This code is for Sarcasm_Present class 
 
-
 import sys
 import os
 import pandas as pd
 import tkinter as tk
 from tkinter import messagebox
-
 
 # ---------- SYSTEM CHECK ----------
 
@@ -15,6 +13,7 @@ try:
 except ImportError:
     print("❌ Missing dependencies. Run: sudo apt install python3-pil python3-pil.imagetk")
     sys.exit(1)
+
 
 # ================= CONFIG =================
 
@@ -59,6 +58,7 @@ if os.path.exists(STATE_FILE):
 root = tk.Tk()
 root.title("Meme Annotator - Search Integrated")
 root.configure(bg="#121212")
+
 
 try:
     root.attributes('-zoomed', True)
@@ -125,6 +125,7 @@ def set_value(panel_idx, new_val):
         update_visuals(panel_idx)
         save_to_disk()
 
+
 def jump_logic(event=None):
     global current_index
     query = search_var.get().strip().lower()
@@ -152,6 +153,7 @@ def jump_logic(event=None):
         messagebox.showwarning("Not Found", f"Meme '{query}' not found in Excel.")
 
 search_entry.bind("<Return>", jump_logic)
+
 
 def load_batch():
     for i in range(IMAGES_PER_BATCH):
