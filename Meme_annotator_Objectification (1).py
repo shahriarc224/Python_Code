@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import messagebox
 
+
 # ---------- CONFIG ----------
 image_folder = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes"
 excel_path = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes\Meme_annotations_Binar.xlsx"
@@ -14,7 +15,9 @@ IMAGES_PER_PAGE = 8
 COLS = 4
 # ----------------------------
 
+
 # ---------- LOAD DATA ----------
+
 if not os.path.exists(excel_path):
     print(f"Error: Could not find Excel file at {excel_path}")
     exit()
@@ -28,7 +31,10 @@ rows = df.index.tolist()
 page_index = 0
 temp_labels = {}
 
+
+
 # ---------- GUI ----------
+
 root = tk.Tk()
 root.title("Meme Annotation Tool")
 root.state("zoomed")
@@ -46,10 +52,14 @@ tk.Label(
     bg="#121212"
 ).pack()
 
+
 progress_label = tk.Label(header, fg="#aaaaaa", bg="#121212", font=("Arial", 11))
 progress_label.pack()
 
+
+
 # ---------- SEARCH & JUMP SECTION ----------
+
 nav_bar = tk.Frame(header, bg="#121212")
 nav_bar.pack(pady=10)
 
