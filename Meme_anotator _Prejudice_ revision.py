@@ -4,13 +4,17 @@ from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import messagebox
 
+
 # ---------------- CONFIG ----------------
+
 image_folder = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes"
 excel_path = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes\Meme_annotations_Binar.xlsx"
 progress_file = "review_progress.txt" 
 target_column = "Prejudice"  
 BATCH_SIZE = 8  
+
 # ----------------------------------------
+
 
 def load_last_index():
     if os.path.exists(progress_file):
@@ -25,7 +29,9 @@ def save_progress(idx):
     with open(progress_file, "w") as f:
         f.write(str(idx))
 
+
 # Load and Sort Data
+
 df = pd.read_excel(excel_path)
 df = df.sort_values(
     by="Image_Name",
