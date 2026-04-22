@@ -41,13 +41,16 @@ df = df.sort_values(
 # Filter for rows that HAVE been annotated
 rows_to_review = df[df[target_column].notna()].index.tolist()
 
+
 if not rows_to_review:
     print(f"No annotated data found for '{target_column}' to review!")
     exit()
 
 current_index = load_last_index()
 
+
 # ---------------- GUI ----------------
+
 root = tk.Tk()
 root.title(f"Review Tool: {target_column}")
 root.state('zoomed')
@@ -66,7 +69,9 @@ header_label = tk.Label(
 )
 header_label.pack()
 
+
 # --- SEARCH BOX (STRICT TOP-RIGHT POSITION) ---
+
 search_container = tk.Frame(root, bg="#1e1e1e", bd=2, relief="ridge")
 search_container.place(relx=0.98, y=20, anchor="ne") # Places it 2% from right edge, 20px down
 
