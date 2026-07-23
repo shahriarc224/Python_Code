@@ -13,10 +13,6 @@ progress_file = "review_progress.txt"
 target_column = "Prejudice"  
 BATCH_SIZE = 8  
 
- 
-
-# ----------------------------------------
-
 
 def load_last_index():
     if os.path.exists(progress_file):
