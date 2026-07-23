@@ -30,7 +30,6 @@ def save_progress(idx):
 
 
 # Load and Sort Data
-
 df = pd.read_excel(excel_path)
 df = df.sort_values(
     by="Image_Name",
@@ -49,11 +48,11 @@ current_index = load_last_index()
 
 
 # ---------------- GUI ----------------
-
 root = tk.Tk()
 root.title(f"Review Tool: {target_column}")
 root.state('zoomed')
 root.configure(bg="#121212")
+
 
 # --- HEADER SECTION ---
 header_frame = tk.Frame(root, bg="#121212")
@@ -70,7 +69,6 @@ header_label.pack()
 
 
 # --- SEARCH BOX (STRICT TOP-RIGHT POSITION) ---
-
 search_container = tk.Frame(root, bg="#1e1e1e", bd=2, relief="ridge")
 search_container.place(relx=0.98, y=20, anchor="ne") # Places it 2% from right edge, 20px down
 
@@ -81,11 +79,13 @@ search_entry.pack(side="left", padx=5, pady=5)
 def perform_search(event=None):
     global current_index
     target_name = search_entry.get().strip()
+
     
     # condition 
     if not target_name:
         return
 
+    
     # Look for name in the list
     found_idx = -1
     for i, row_idx in enumerate(rows_to_review):
@@ -94,6 +94,7 @@ def perform_search(event=None):
         if target_name.lower() in img_name:
             found_idx = i
             break
+
     
     if found_idx != -1:
         save_data() # Save current work before jumping
@@ -146,8 +147,9 @@ for i in range(BATCH_SIZE):
 
     image_widgets.append((img_label, info_label))
 
-# ---------------- LOGIC ----------------
 
+
+# ---------------- LOGIC ----------------
 def load_batch():
     global photo_refs
     photo_refs = []
@@ -189,6 +191,7 @@ def save_data():
         if idx_pos < len(rows_to_review):
             df_idx = rows_to_review[idx_pos]
             df.at[df_idx, target_column] = int(value_vars[i].get())
+
     
     df.to_excel(excel_path, index=False)
     save_progress(current_index)
