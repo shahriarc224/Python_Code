@@ -12,6 +12,8 @@ excel_path = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes\Meme_annotations_B
 progress_file = "review_progress.txt" 
 target_column = "Prejudice"  
 BATCH_SIZE = 8  
+BATCH_SIZE = 8  
+BATCH_SIZE = 8  
 
 # ----------------------------------------
 
