@@ -7,7 +7,6 @@ from tkinter import messagebox
 
 
 # ---------------- CONFIG ----------------
-
 image_folder = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes"
 excel_path = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes\Meme_annotations_Binar.xlsx"
 progress_file = "review_progress.txt" 
