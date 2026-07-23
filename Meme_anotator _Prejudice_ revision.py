@@ -82,6 +82,7 @@ def perform_search(event=None):
     global current_index
     target_name = search_entry.get().strip()
     
+    # condition 
     if not target_name:
         return
 
