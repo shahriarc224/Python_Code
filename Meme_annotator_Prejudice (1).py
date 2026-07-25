@@ -29,6 +29,7 @@ if not rows_to_annotate:
 
 current_index = 0
 
+
 # ---------------- GUI ----------------
 root = tk.Tk()
 root.title("Prejudice Annotation Tool")
@@ -72,6 +73,7 @@ for i in range(BATCH_SIZE):
     btn_frame = tk.Frame(frame, bg="#1e1e1e")
     btn_frame.pack(pady=6)
 
+    
     for val in [0, 1]:
         tk.Radiobutton(
             btn_frame,
@@ -88,8 +90,8 @@ for i in range(BATCH_SIZE):
 
     image_widgets.append((img_label, name_label))
 
-# ---------------- LOGIC ----------------
 
+# ---------------- LOGIC ----------------
 def set_all_zero(event=None):
     """Sets all visible images in the batch to 0"""
     for i in range(BATCH_SIZE):
