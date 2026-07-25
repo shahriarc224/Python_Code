@@ -3,7 +3,7 @@ import pandas as pd
 from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import messagebox
-
+#this are the essenttials codes 
 
 image_folder = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes"
 excel_path = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes\Meme_annotations_Binar.xlsx"
