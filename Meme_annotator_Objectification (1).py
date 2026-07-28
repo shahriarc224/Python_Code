@@ -92,6 +92,7 @@ def perform_search():
 
 tk.Button(nav_bar, text="FIND & JUMP", command=perform_search, bg="#3b82f6", fg="white", padx=10).pack(side="left", padx=5)
 
+
 # Quick Index Jump
 tk.Label(nav_bar, text="|  Jump to Index:", fg="white", bg="#121212").pack(side="left", padx=15)
 idx_entry = tk.Entry(nav_bar, width=8)
