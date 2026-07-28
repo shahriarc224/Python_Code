@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 
+
 # ---------- CONFIG ----------
 image_folder = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes"
 excel_path = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes\Meme_annotations_Binar.xlsx"
@@ -13,7 +14,6 @@ translation = "বস্তুনিষ্ঠকরণ"
 values = [0, 1]
 IMAGES_PER_PAGE = 8
 COLS = 4
-# ----------------------------
 
 
 # ---------- LOAD DATA ----------
@@ -22,9 +22,11 @@ if not os.path.exists(excel_path):
     print(f"Error: Could not find Excel file at {excel_path}")
     exit()
 
+
 df = pd.read_excel(excel_path)
 if field not in df.columns:
     df[field] = None
+    
 
 total_memes = len(df)
 rows = df.index.tolist()
@@ -34,11 +36,11 @@ temp_labels = {}
 
 
 # ---------- GUI ----------
-
 root = tk.Tk()
 root.title("Meme Annotation Tool")
 root.state("zoomed")
 root.configure(bg="#121212")
+
 
 # ---------- HEADER ----------
 header = tk.Frame(root, bg="#121212", pady=5)
@@ -55,6 +57,7 @@ tk.Label(
 
 progress_label = tk.Label(header, fg="#aaaaaa", bg="#121212", font=("Arial", 11))
 progress_label.pack()
+
 
 
 
@@ -81,6 +84,7 @@ def perform_search():
         target_idx = match.index[0]
         page_index = target_idx // IMAGES_PER_PAGE
         load_page()
+        
         # Optional: highlight the specific entry or just inform the user
         search_entry.delete(0, tk.END)
     else:
@@ -118,12 +122,14 @@ grid_frame.pack(expand=True)
 img_refs = []
 button_refs = {}
 
+
 def update_status():
     done = df[field].notna().sum()
     percent = (done / total_memes) * 100
     progress_label.config(
         text=f"Progress: {done}/{total_memes} ({percent:.1f}%) | Page {page_index+1}"
     )
+    
 
 def set_label(idx, val):
     temp_labels[idx] = val
@@ -184,6 +190,7 @@ def save_current():
         df.to_excel(excel_path, index=False)
         temp_labels.clear()
 
+
 def next_page(event=None):
     global page_index
     save_current()
@@ -206,12 +213,14 @@ def bulk_zero(event=None):
     for idx in rows[start:end]:
         set_label(idx, 0)
 
+
 # ---------- FOOTER ----------
 footer = tk.Frame(root, bg="#121212", pady=15)
 footer.pack(fill="x", side="bottom")
 
 tk.Button(footer, text="⬅ PREVIOUS (Left Arrow)", command=prev_page, bg="#444", fg="white", width=25).pack(side="left", padx=100)
 tk.Button(footer, text="SAVE & NEXT (Enter) ➡", command=next_page, bg="#3b82f6", fg="white", font=("Arial", 14, "bold"), width=30).pack(side="right", padx=100)
+
 
 # ---------- KEY BINDINGS ----------
 root.bind("<Left>", prev_page)
