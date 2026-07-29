@@ -56,9 +56,7 @@ progress_label = tk.Label(header, fg="#aaaaaa", bg="#121212", font=("Arial", 11)
 progress_label.pack()
 
 
-
 # ---------- SEARCH & JUMP SECTION ----------
-
 nav_bar = tk.Frame(header, bg="#121212")
 nav_bar.pack(pady=10)
 
