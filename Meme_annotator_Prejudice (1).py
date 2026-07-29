@@ -95,8 +95,6 @@ for i in range(BATCH_SIZE):
     image_widgets.append((img_label, name_label))
 
 
-
-
 # ---------------- LOGIC ----------------
 def set_all_zero(event=None):
     """Sets all visible images in the batch to 0"""
