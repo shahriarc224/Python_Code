@@ -32,7 +32,6 @@ page_index = 0
 temp_labels = {}
 
 
-
 # ---------- GUI ----------
 root = tk.Tk()
 root.title("Meme Annotation Tool")
