@@ -11,7 +11,6 @@ target_column = "Prejudice"
 BATCH_SIZE = 6     # You mentioned 4 in your text, but your code uses 6. I kept 6 to match your grid....
 
 
-
 df = pd.read_excel(excel_path)
 
 
