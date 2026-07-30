@@ -31,7 +31,10 @@ if not rows_to_annotate:
 current_index = 0
 
 
+
+
 # ---------------- GUI ----------------
+
 root = tk.Tk()
 root.title("Prejudice Annotation Tool")
 root.geometry("1500x900")
