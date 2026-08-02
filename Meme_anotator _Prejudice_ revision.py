@@ -83,7 +83,6 @@ def perform_search(event=None):
     # condition 
     if not target_name:
         return
-
     
     # Look for name in the list
     found_idx = -1
