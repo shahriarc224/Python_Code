@@ -46,6 +46,8 @@ if not rows_to_review:
 current_index = load_last_index()
 
 
+
+
 # ---------------- GUI ----------------
 root = tk.Tk()
 root.title(f"Review Tool: {target_column}")
