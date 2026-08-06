@@ -67,6 +67,7 @@ header_label = tk.Label(
 header_label.pack()
 
 
+
 # --- SEARCH BOX (STRICT TOP-RIGHT POSITION) ---
 search_container = tk.Frame(root, bg="#1e1e1e", bd=2, relief="ridge")
 search_container.place(relx=0.98, y=20, anchor="ne") # Places it 2% from right edge, 20px down
