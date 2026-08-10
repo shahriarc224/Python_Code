@@ -13,7 +13,6 @@ BATCH_SIZE = 6        # You mentioned 4 in your text, but your code uses 6. I ke
 
 df = pd.read_excel(excel_path)
 
-
 if target_column not in df.columns:
     df[target_column] = None
 # Sorting logic to keep images in order
