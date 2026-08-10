@@ -10,7 +10,6 @@ excel_path = r"E:\meme resesarch by sabbir\Memes (2)(1)\Memes\Meme_annotations_B
 target_column = "Prejudice"
 BATCH_SIZE = 6        # You mentioned 4 in your text, but your code uses 6. I kept 6 to match your grid.......
 
-
 df = pd.read_excel(excel_path)
 
 if target_column not in df.columns:
