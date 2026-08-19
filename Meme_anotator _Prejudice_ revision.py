@@ -21,7 +21,6 @@ def load_last_index():
         except: return 0
     return 0
 
-
 def save_progress(idx):
     with open(progress_file, "w") as f:
         f.write(str(idx))
