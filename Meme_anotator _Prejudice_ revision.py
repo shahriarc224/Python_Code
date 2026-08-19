@@ -28,6 +28,7 @@ def save_progress(idx):
         f.write(str(idx))
 
 
+
 # Load and Sort Data
 df = pd.read_excel(excel_path)
 df = df.sort_values(
