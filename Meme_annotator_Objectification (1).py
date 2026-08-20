@@ -15,7 +15,6 @@ IMAGES_PER_PAGE = 8
 COLS = 4
 
 
-
 # ---------- LOAD DATA ----------
 if not os.path.exists(excel_path):
     print(f"Error: Could not find Excel file at {excel_path}")
