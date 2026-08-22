@@ -28,6 +28,9 @@ if not rows_to_annotate:
 
 current_index = 0
 
+
+
+
 # ---------------- GUI --------------------
 
 root = tk.Tk()
